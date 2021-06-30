@@ -1,0 +1,30 @@
+mutation rankwebsite{
+  	rankwebsite(
+      user:"gordon6"
+      password:"0000"
+      rank:2
+      url:"https://www.youtube.com/1"
+    ){
+    msg
+  }
+}
+
+======check the msg may be new/update  base on whether you are first time ranking this website 
+
+
+query getWebsite{
+  getWebsite(url:"https://www.youtube.com/1"){
+    id
+    url
+    comments{
+      id
+      type
+      contain
+      sender_id
+      receiver_id
+    }
+    rank
+  }
+    
+}
+

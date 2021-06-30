@@ -1,0 +1,48 @@
+query allUsers{
+  allUsers   
+}
+
+query allGroups{
+  allGroups   
+}
+
+
+query finduser{
+  finduser( name:"gordon10"
+       ){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+        privacy
+        users
+        
+      }
+      messages{
+        id
+        type
+        receiver_id
+        contain
+      }
+  }
+    msg
+  }
+}
+
+========notice there may have several groups with same name 
+====return array of group
+query findGroups{
+  findGroups(name:"groupSamename"){
+     name
+      id
+      users
+  }
+    
+}

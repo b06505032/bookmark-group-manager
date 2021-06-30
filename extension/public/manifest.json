@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Bookmark group manager Extension",
+  "description": "This extension is a starting point to create a real Chrome extension",
+  "version": "0.0.1",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Open the popup"
+  },
+  "icons": {
+    "16": "favicon.ico",
+    "48": "favicon.ico",
+    "128": "favicon.ico"
+  },
+  "content_security_policy": "script-src 'self' 'sha256-QwxlXLoC5w6m/a9CSpPPLWNmP5D6qbbWh8h/8abQSJM='; object-src 'self'",  
+  "permissions": [
+    "activeTab", "tabs", "storage", "https://bookmark-group-manager.vercel.app/", "cookies"
+  ],
+  "background": {
+    "scripts": [
+      "src/background.js"
+    ],
+    "persistent": true
+  }
+}

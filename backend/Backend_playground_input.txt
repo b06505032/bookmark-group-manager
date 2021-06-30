@@ -1,0 +1,767 @@
+
+======================test set 1=============================
+
+mutation createUser{
+  	createUser(
+      data:{
+        name:"gordon"
+        password:"0000"
+      }
+    ){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+      }
+  }
+    msg
+  }
+}
+
+======create same user throw error msg
+mutation createUser{
+  	createUser(
+      data:{
+        name:"gordon"
+        password:"0000"
+      }
+    ){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+      }
+  }
+    msg
+  }
+}
+mutation createGroup{
+  	createGroup(
+      data:{
+        user:"gordon"
+        password:"0000"
+        name:"groupA"
+        privacy:true
+      }
+    ){
+    data{
+    id
+ 	name
+    users
+    privacy
+  }
+    msg
+  }
+}
+=== record the group id====(exp: data:id => 60cd8cff148b321fa8fb32f3)
+
+
+mutation createGroup{
+  	createGroup(
+      data:{
+        user:"gordon"
+        password:"0000"
+        name:"groupB"
+        privacy:true
+      }
+    ){
+    data{
+    id
+ 	name
+    users
+    privacy
+  }
+    msg
+  }
+}
+ === record the group id====(exp: 60cd8d52148b321fa8fb32f4
+
+
+
+<===== groupid should be what you have recorded
+ mutation createBookMarks{
+  	createBookMarks(
+      data:{
+        user:"gordon"
+        password:"0000"
+        name:"webfinal"
+        url:"http://localhost:5000/test3/uuu"
+        groupid:"60cd8cff148b321fa8fb32f3"
+      }
+    ){
+    data{
+    id
+  	name
+  	createTime
+  	url
+		}
+    msg
+  }
+}
+
+ mutation createBookMarks{
+  	createBookMarks(
+      data:{
+        user:"gordon"
+        password:"0000"
+        name:"webfinal2"
+        url:"http://localhost:5000/test123"
+        groupid:"60cd8cff148b321fa8fb32f3"
+      }
+    ){
+    data{
+    id
+  	name
+  	createTime
+  	url
+		}
+    msg
+  }
+}
+
+========now we can query
+
+query getuser{
+  getuser( name:"gordon"
+        password:"0000"){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+        privacy
+        users
+        
+      }
+  }
+    msg
+  }
+}
+
+=====from groups.id we get    exp:(60cd8cff148b321fa8fb32f3)
+
+
+query getgroup{
+  getgroup(user:"gordon",password:"0000",id:"60cd8cff148b321fa8fb32f3"){
+    data{
+      name
+      id
+      users
+      bookMarks{
+        name
+        url
+        id
+      }
+      
+    }
+    msg
+  }
+}
+
+
+
+
+==================test set 2======================
+create 2 user first
+
+mutation createUser{
+  	createUser(
+      data:{
+        name:"gordon6"
+        password:"0000"
+      }
+    ){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+      }
+      messages{
+        contain
+      }
+  }
+    msg
+  }
+}
+
+mutation createUser{
+  	createUser(
+      data:{
+        name:"gordon7"
+        password:"0000"
+      }
+    ){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+      }
+      messages{
+        contain
+      }
+  }
+    msg
+  }
+}
+
+
+======add  comment to website====
+=======receiver_id: "no"  mean reply nobody,just leave comment
+mutation addComment{
+  	addComment(
+      user:"gordon6"
+      password:"0000"
+      contain:"hello"
+      receiver_id:"no"
+      url:"https://www.youtube.com/"
+    ){
+    data{
+    	contain
+      id
+      
+  }
+    msg
+  }
+}
+mutation addComment{
+  	addComment(
+      user:"gordon6"
+      password:"0000"
+      contain:"hello  !!!!!!"
+      receiver_id:"no"
+      url:"https://www.youtube.com/"
+    ){
+    data{
+    	contain
+      id
+      
+  }
+    msg
+  }
+}
+
+==========check website========
+query getWebsite{
+  getWebsite(url:"https://www.youtube.com/"){
+    id
+    url
+    comments{
+      id
+      type
+      contain
+      sender_id
+      receiver_id
+      createTime
+    }
+  }
+    
+}
+
+
+=====> you may get somthing like this
+=======you can use #@#  to sep user name and comment 
+{
+  "data": {
+    "getWebsite": {
+      "id": "60cf19de093f1238a86c830d",
+      "url": "https://www.youtube.com/",
+      "comments": [
+        {
+          "id": "60cf19de093f1238a86c830e",
+          "type": "url#https://www.youtube.com/",
+          "contain": "gordon6#@#hello",
+          "sender_id": "60cf1911093f1238a86c830b",
+          "receiver_id": "no"
+        },
+        {
+          "id": "60cf1acf093f1238a86c830f",       <======here(1)
+          "type": "url#https://www.youtube.com/",
+          "contain": "gordon6#@#hello  !!!!!!",
+          "sender_id": "60cf1911093f1238a86c830b",
+          "receiver_id": "no"
+        }
+      ]
+    }
+  }
+}
+
+
+========let try reply======
+      
+======== receiver_id   from above (1)
+mutation addComment{
+  	addComment(
+      user:"gordon7"
+      password:"0000"
+      contain:"shut up"
+      receiver_id:"60cf1acf093f1238a86c830f"
+      url:"https://www.youtube.com/"
+    ){
+    data{
+    	contain
+      id
+      
+  }
+    msg
+  }
+}
+
+==========check   website==========
+query getWebsite{
+  getWebsite(url:"https://www.youtube.com/"){
+    id
+    url
+    comments{
+      id
+      type
+      contain
+      sender_id
+      receiver_id
+    }
+  }
+    
+}
+
+======> a new commend
+{
+          "id": "60cf1b85093f1238a86c8310",
+          "type": "url#https://www.youtube.com/",
+          "contain": "gordon7#@#shut up#@#gordon6#@#hello  !!!!!!",   (2)
+          "sender_id": "60cf1922093f1238a86c830c",
+          "receiver_id": "60cf1acf093f1238a86c830f"
+        }
+(2)=>gordon7#@#shut up#@#gordon6#@#hello  !!!!!!     mean=>  gordon7:shut up   ==reply=>  gordon6:hello  !!!!!!
+id: reply comment id
+sender_id:user who leave the reply
+receiver_id:comment be replied
+
+=============check  user===========
+query getuser{
+  getuser( name:"gordon6"
+        password:"0000"){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+        privacy
+        users
+        
+      }
+      messages{
+        id
+        type
+        receiver_id
+        contain
+      }
+  }
+    msg
+  }
+}
+====> you will see gordon6 receive the reply 
+{
+  "data": {
+    "getuser": {
+      "data": {
+        "id": "60cf1911093f1238a86c830b",
+        "name": "gordon6",
+        "password": "0000",
+        "tags": [],
+        "friends": [],
+        "groups": [],
+        "messages": [
+          {
+            "id": "60cf1b85093f1238a86c8310",
+            "type": "url#https://www.youtube.com/",
+            "receiver_id": "60cf1acf093f1238a86c830f",
+            "contain": "gordon7#@#shut up#@#gordon6#@#hello  !!!!!!"
+          }
+        ]
+      },
+      "msg": "success"
+    }
+  }
+}
+
+
+==================test set 3======================
+let try to invite other to your group
+create two user first
+
+mutation createUser{
+  	createUser(
+      data:{
+        name:"gordon11"
+        password:"0000"
+      }
+    ){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+      }
+      messages{
+        contain
+      }
+  }
+    msg
+  }
+}
+
+mutation createUser{
+  	createUser(
+      data:{
+        name:"gordon12"
+        password:"0000"
+      }
+    ){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+      }
+      messages{
+        contain
+      }
+  }
+    msg
+  }
+}
+
+======than create a group
+
+mutation createGroup{
+  	createGroup(
+      data:{
+        user:"gordon11"
+        password:"0000"
+        name:"groupForinvite"
+        privacy:true
+      }
+    ){
+    data{
+    id
+ 	name
+    users
+    privacy
+  }
+    msg
+  }
+}
+
+=========next  let send an invite  (you may need to getuser to get group_id)
+mutation inviteToGroup{
+  	inviteToGroup(
+      user:"gordon11"
+      password:"0000"
+      receiverName:"gordon12"
+      group_id:"60d0988b058cfc4d1b7aab3d"
+     
+    ){
+    data{
+    	contain
+      id
+  }
+    msg
+  }
+}
+
+
+==========get user again
+query getuser{
+  getuser( name:"gordon12"
+        password:"0000"){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+        privacy
+        users
+        
+      }
+      messages{
+        id
+        type
+        receiver_id
+        contain
+      }
+  }
+    msg
+  }
+}
+======you may found message like
+{
+  "data": {
+    "getuser": {
+      "data": {
+        "id": "60d09863058cfc4d1b7aab3c",
+        "name": "gordon12",
+        "password": "0000",
+        "tags": [],
+        "friends": [],
+        "groups": [],
+        "messages": [
+          {
+            "id": "60d09934058cfc4d1b7aab3e",   <===(4)
+            "type": "group_invite",
+            "receiver_id": "60d09863058cfc4d1b7aab3c",
+            "contain": "gordon11 invite you to join groupForinvite as editer"
+          }
+        ]
+      },
+      "msg": "success"
+    }
+  }
+}
+======== than  we accept invite    message_id is(4)
+
+mutation acceptInvite{
+  	acceptInvite(
+      user:"gordon12"
+      password:"0000"
+      message_id:"60d09934058cfc4d1b7aab3e"
+     
+    ){
+    data{
+    	contain
+      id
+  }
+    msg
+  }
+}
+
+====="msg": "you accept this invite successfully"====
+
+=====than check user again
+query getuser{
+  getuser( name:"gordon12"
+        password:"0000"){
+    data{
+			id
+      name
+      password
+      tags
+      friends{
+        name
+      }
+      groups{
+        id
+        name
+        privacy
+        users
+        
+      }
+      messages{
+        id
+        type
+        receiver_id
+        contain
+      }
+  }
+    msg
+  }
+}
+
+
+======found out that you are now editer
+{
+  "data": {
+    "getuser": {
+      "data": {
+        "id": "60d09863058cfc4d1b7aab3c",
+        "name": "gordon12",
+        "password": "0000",
+        "tags": [],
+        "friends": [],
+        "groups": [
+          {
+            "id": "60d0988b058cfc4d1b7aab3d",
+            "name": "groupForinvite",
+            "privacy": true,
+            "users": [
+              "gordon11#owner",
+              "gordon12#editer"
+            ]
+          }
+        ],
+        "messages": [      
+          {
+            "id": "60d09934058cfc4d1b7aab3e",<======(maybe i will remove this message after acceptInvite at next update)
+            "type": "group_invite",
+            "receiver_id": "60d09863058cfc4d1b7aab3c",
+            "contain": "gordon11 invite you to join groupForinvite as editer"
+          }
+        ]
+      },
+      "msg": "success"
+    }
+  }
+}
+
+
+==============test 4=========
+some little change
+you can now subscribe to privaty:true group
+mutation subscribeGroup{
+  	subscribeGroup(
+      user:"gordon"
+      password:"0000"
+      group_id:"60d1948f8890d162b4ebae5d"
+     
+    ){
+    data{
+    name
+      id
+      users
+      
+      tags
+  }
+    msg
+  }
+}
+===========================
+            ]
+          },
+          {
+            "id": "60cd8d52148b321fa8fb32f4",
+            "name": "groupB",
+            "privacy": true,
+            "users": [
+              "gordon#owner"
+            ]
+          },
+          {
+            "id": "60d0f1b0a2f2161774f123fc",
+            "name": "social",
+            "privacy": true,
+            "users": [
+              "gordon#owner"
+            ]
+          },
+          {
+            "id": "60d1948f8890d162b4ebae5d",  <=====this is your subscribe group
+            "name": "groupForTags",
+            "privacy": true,
+            "users": [
+              "gordon10#owner"   <======notice you are not owner nor editer
+            ]
+          }
+==========now you can create bookmark with tags(or without tags)
+mutation createBookMarks{
+  	createBookMarks(
+      data:{
+        user:"gordon10"
+        password:"0000"
+        name:"webfinal343"
+        url:"http://localhost:5000/testtime"
+        groupid:"60d1948f8890d162b4ebae5d"  
+        tags:["aaa","bbb","ccc"]
+      }
+    ){
+    data{
+    id
+  	name
+  	createTime
+  	url
+		}
+    msg
+  }
+}
+
+
+====================  after get group  60d1948f8890d162b4ebae5d (5)
+query getgroup{
+  getgroup(user:"gordon10",password:"0000",id:"60d1948f8890d162b4ebae5d"){
+    data{
+      name
+      id
+      users
+      bookMarks{
+        name
+        url
+        id
+        createTime
+      }
+      tags
+      
+    }
+    msg
+  }
+}
+=======================
+   {
+            "name": "webfinal343@aaa@bbb@ccc",    <====bookmark name with tags
+            "url": "http://localhost:5000/testtime",
+            "id": "60d198735d03de633370deab",
+            "createTime": 82851402     <=====here is create time
+          }
+        ],
+        "tags": [    <===== here we show all tags in group(base on what tags is on bookmark)
+          "aaa",
+          "bbb",
+          "ccc"
+        ]
+      },
+==========================
+

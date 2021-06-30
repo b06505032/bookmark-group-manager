@@ -1,0 +1,48 @@
+==================test set 5======
+=====try unsubscribeGroup
+
+mutation unsubscribeGroup{
+  	unsubscribeGroup(
+     
+        user:"gordon"
+        password:"0000"
+        group_id:"60d1948f8890d162b4ebae5d"
+       
+     
+      
+    ){
+
+    msg
+  }
+}
+  ======or remove bookmark======
+
+mutation removeBookMarks{
+  	removeBookMarks(
+     
+        user:"gordon10"
+        password:"0000"
+        group_id:"60d1948f8890d162b4ebae5d"
+        bookMark_id:"60d194a18890d162b4ebae5e"
+     
+      
+    ){
+
+    msg
+  }
+}
+===========removeMessage======
+mutation removeMessage{
+  	removeMessage(
+     
+        user:"gordon10"
+        password:"0000"
+        message_id:"60d09934058cfc4d1b7aab3e"
+       
+     
+      
+    ){
+
+    msg
+  }
+}

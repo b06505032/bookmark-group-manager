@@ -1,0 +1,212 @@
+type Query {
+  getuser(name: String! ,password:String): Userwrapper!
+  getgroup(user:String!,password:String!,id:String!):groupwrapper!
+  getWebsite(url:String!):website!
+  finduser(name:String!, type:String!):Userwrapper!
+  findGroups(name:String!):[group]
+  allUsers:[String]
+  allGroups:[String]
+
+  
+  
+  
+  posts(query: String): [Post!]!
+  comments: [Comment!]!
+  me: User!
+  post: Post!
+}
+
+type Mutation {
+  createBookMarks(data:CreateBookMarkInput):bookMarkwrapper!
+  createGroup (data:CreateGroupInput):groupwrapper!
+  createUser (data:CreateUserInput):Userwrapper!
+  addComment (user:String!,password:String!,contain:String!,receiver_id:String!,url:String!):Messagewrapper!
+  inviteToGroup(user:String!,password:String!,group_id:String!,receiverName:String!):Messagewrapper!
+  acceptInvite(user:String!,password:String!,message_id:String!):Messagewrapper!
+  subscribeGroup(user:String!,password:String!,group_id:String!):groupwrapper!
+
+  removeBookMarks(user:String!,password:String!,group_id:String!,bookMark_id:String!):bookMarkwrapper!
+  unsubscribeGroup(user:String!,password:String!,group_id:String!):groupwrapper!
+  removeMessage(user:String!,password:String!,message_id:String!):Messagewrapper!
+
+  rankwebsite(user:String!,password:String!,url:String!,rank:Int!): Websitewrapper!
+
+
+
+  createChatBox(name1: String!, name2: String!): ChatBox
+  createMessage(name1:String!,name2:String!,msg:String!):Message!
+  
+  deleteUser(id: ID!): User!
+  updateUser(id: ID!, data: UpdateUserInput!): User!
+  createPost(data: CreatePostInput!): Post!
+  deletePost(id: ID!): Post!
+  updatePost(id: ID!, data: UpdatePostInput!): Post!
+  createComment(data: CreateCommentInput!): Comment!
+  deleteComment(id: ID!): Comment!
+  updateComment(id: ID!, data: UpdateCommentInput!): Comment!
+}
+type bookMark{
+  id:String!
+  name:String!
+  createTime:Int!
+  url:String!
+  userDefineRouting:[bookMark]
+}
+type bookMarkwrapper{
+  data:bookMark
+  msg:String
+}
+type group{
+  id:String!
+  name:String!
+  privacy:Boolean!
+  users:[String]!
+  tags:[String]
+  bookMarks:[bookMark]
+}
+type groupwrapper{
+  data:group
+  msg:String
+}
+
+type User {
+  id: String!
+  name: String!
+  password: String
+  tags:[String]!
+  friends:[User]
+  groups:[group]
+  messages:[Message]
+}
+type Userwrapper{
+  data:User
+  msg:String
+}
+
+input CreateBookMarkInput{
+  user:String!
+  password:String!
+  name:String!
+  groupid:String!
+  url:String!
+  tags:[String]
+}
+input CreateGroupInput{
+  user:String!
+  password:String!
+  name:String!
+  privacy:Boolean!
+}
+
+
+
+type website{
+  id:String!
+  url:String!
+  comments:[Message]!
+  rank:Float
+}
+type Websitewrapper{
+  data:website
+  msg:String
+}
+
+type Message {
+  id: String!
+  type:String!
+  contain:String!
+  sender_id:String!
+  receiver_id:String!
+  createTime:Int!
+}
+type Messagewrapper{
+  data:Message
+  msg:String
+}
+
+
+
+type ChatBox {
+  id: String!
+  name: String!
+  messages: [Message!]
+}
+
+
+
+
+type Subscription {
+  message(chatroom:String!):MessageSubscriptionPayload!
+  comment(postId: ID!): CommentSubscriptionPayload!
+  post: PostSubscriptionPayload!
+}
+
+input CreateUserInput {
+  name: String!
+  password:String!
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  age: Int
+}
+
+input CreatePostInput {
+  title: String!
+  body: String!
+  published: Boolean!
+  author: ID!
+}
+
+input UpdatePostInput {
+  title: String
+  body: String
+  published: Boolean
+}
+
+input CreateCommentInput {
+  text: String!
+  author: ID!
+  post: ID!
+}
+
+input UpdateCommentInput {
+  text: String
+}
+
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  published: Boolean!
+  author: User!
+  comments: [Comment!]!
+}
+
+type Comment {
+  id: ID!
+  text: String!
+  author: User!
+  post: Post!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+type PostSubscriptionPayload {
+  mutation: MutationType!
+  data: Post!
+}
+
+type CommentSubscriptionPayload {
+  mutation: MutationType!
+  data: Comment!
+}
+type MessageSubscriptionPayload{
+  mutation: MutationType!
+  data: Message!
+}

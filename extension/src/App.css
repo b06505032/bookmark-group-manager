@@ -1,0 +1,117 @@
+@import '~antd/dist/antd.css';
+
+html {
+  height: 520px;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  width: 300px;
+  height: 520px;
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+  margin: auto;
+  box-shadow: 0px 1px 5px 0.5px #aaa8a2;
+}
+
+.App-header {
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  background-color: rgb(41, 99, 175);
+}
+
+.App-title {
+  height: 100%;
+  line-height: 40px;
+  font-family: Comic Sans MS;
+  color: aliceblue;
+  margin-bottom: 0;
+}
+
+.App-bookmark {
+  width: 100%;
+  height: 220px;
+  background-color: rgb(255, 255, 255);
+}
+
+.App-comments { 
+  width: 100%;
+  height: 3000px;
+  background-color: rgb(255, 255, 255);
+}
+
+.App-rate {
+  margin-top: 6px;
+  border-bottom: 0.5px black solid;
+}
+
+/* comments */
+#comment-input {
+  width: 217px;
+  border-bottom: 1px solid lightgray;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  flex-grow: 1;
+}
+
+#comment-input:focus {
+  width: 217px;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 1.5px solid black;
+}
+
+.App-comments-scroller-container {
+  height: 180px;
+  width:110%;
+  overflow: auto;
+  border-radius: 4px;
+}
+
+/* comment */
+.App-comment {
+  text-align: left;
+}
+
+.ant-comment-inner {
+  padding-top: 6px;
+  padding-bottom: 2px;
+}
+
+.ant-comment-actions {
+  margin: 0%;
+}
+
+.comment-action {
+  padding-left: 8px;
+  cursor: 'auto';
+}
+
+[class*='-col-rtl'] .comment-action {
+  padding-right: 8px;
+  padding-left: 0;
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: rgb(219,219,219);
+}
