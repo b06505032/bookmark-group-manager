@@ -9,7 +9,7 @@
 ## Link
 - [Demo video](https://www.youtube.com/watch?v=dW6dqEEwGrc)
 - deployed website [bookmark group manager](https://bookmark-group-manager.vercel.app/) (google chrome browser recommend)
-- Google Chrome Extension [file](https://drive.google.com/file/d/1FnFum99TZziSCXUONnB3yF4B8a5hnIR1/view)
+- Google Chrome Extension [file](https://drive.google.com/file/d/1NfP-yyNE3fN4kwkxGj5BdZ5tB7RV5ULA/view?usp=sharing)
 - [Extension file upload tutorial](https://www.youtube.com/watch?v=K0gTg4F6x6k)
 
 ## How to install and test in localhost
