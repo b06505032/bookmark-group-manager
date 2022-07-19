@@ -1,4 +1,4 @@
-# Bookmark Group Manager 書籤協作管理系統
+# Bookmark Group Manager
 - The final project of Web Programming, NTU EE, 2021 Spring.
 - Creator: [Gordon](https://github.com/gordon0813),  [Jonathan](https://github.com/b06505015),  [Catherine](https://github.com/b06505032)
 
