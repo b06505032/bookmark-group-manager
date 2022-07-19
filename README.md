@@ -1,10 +1,11 @@
 # Bookmark Group Manager 書籤協作管理系統
 - The final project of Web Programming, NTU EE, 2021 Spring.
 - Creator: [Gordon](https://github.com/gordon0813),  [Jonathan](https://github.com/b06505015),  [Catherine](https://github.com/b06505032)
+
 ## Introduction
-1. 與他人共同編輯書籤（可邀請、訂閱）
-2. 網站留言評分功能
-3. 結合Google Chrome extension
+1. A web service allowing 50+ users to co-edit bookmarks groups in real-time
+2. Invite people to co-edit bookmarks groups and subscribe others' bookmarks groups
+3. Integrate a popup Google Chrome extension to allow users to comment and rate websites
 
 ## Link
 - [Demo video](https://www.youtube.com/watch?v=dW6dqEEwGrc)
@@ -39,7 +40,7 @@ cd frontend && yarn install
 ``` bash
 cd frontend && yarn start
 ```
-3. 確認server (port: 5000)已經連上後，可用以下測試帳號登入頁面
+3. When the server (port: 5000) is connected, the following test account are able to log in the service
 - username: `gordon` password: `0000`
 - username: `Catherine` password: `0000`
 - username: `Jonathan` password: `123456`
