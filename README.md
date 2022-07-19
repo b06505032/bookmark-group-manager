@@ -1,6 +1,6 @@
 # Bookmark Group Manager
 - The final project of Web Programming, NTU EE, 2021 Spring.
-- Creator: [Gordon](https://github.com/gordon0813),  [Jonathan](https://github.com/b06505015),  [Catherine](https://github.com/b06505032)
+- Creator: [Gordon](https://github.com/gordon0813),  [Jonathan](https://github.com/b06505015),  [Catherine](https://github.com/chien-ying)
 
 ## Introduction
 1. A web service allowing 50+ users to co-edit bookmarks groups in real-time
