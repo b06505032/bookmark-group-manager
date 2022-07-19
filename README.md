@@ -77,7 +77,7 @@ Make sure to **turn on the developer mode**, then upload the **`build`** file by
 
 ---
 
-## 功能測試
+## Functions
 - Test case
   - Search
   - Invite others to a group
