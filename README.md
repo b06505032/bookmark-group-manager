@@ -1,6 +1,8 @@
 # Bookmark Group Manager
-- The final project of Web Programming, NTU EE, 2021 Spring.
 - Creator: [Gordon](https://github.com/gordon0813),  [Jonathan](https://github.com/b06505015),  [Catherine](https://github.com/chien-ying)
+- Deployed website [bookmark group manager](https://bookmark-group-manager.vercel.app/) (google chrome browser recommend)
+
+![login page](./frontend/readmeImg/BookmarkGroupManager.png)
 
 ## Introduction
 1. A web service allowing 50+ users to co-edit bookmarks groups in real-time
@@ -44,7 +46,7 @@ cd frontend && yarn start
 - username: `gordon` password: `0000`
 - username: `Catherine` password: `0000`
 - username: `Jonathan` password: `123456`
-![login page](./frontend/login.png)
+![login page](./frontend/readmeImg/login.png)
 
 
 ### Google Chrome Extension
@@ -54,7 +56,7 @@ cd frontend && yarn start
 ``` bash
 cd extension && yarn install
 ```
-2. build the project
+2. Build the project
 ``` bash
 yarn run build
 ```
@@ -158,7 +160,7 @@ Make sure to **turn on the developer mode**, then upload the **`build`** file by
 6. If delete successly, the deleted bookmark will not be shown.
 ---
 
-> :warning: **以下功能結合google extension小工具，由於google api服務不允許在local host測試，請確認已將extension成功安裝於google chrome上**
+> :warning: **The following functions is combined with Google Chrome Extension. However, Google API service does not support in localhost. To test the following functions, please make sure the Extension tool is build and installed on Chrome browser.**
 
 ### Login and Register
 1. Click the login button to login page (If you do the action need login first, the login modal will pop out, too.
