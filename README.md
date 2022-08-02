@@ -1,11 +1,11 @@
 # Bookmark Group Manager
 - Creator: [Gordon](https://github.com/gordon0813),  [Jonathan](https://github.com/b06505015),  [Catherine](https://github.com/chien-ying)
+![login page](./frontend/readmeImg/BookmarkGroupManager.png)
 
 ## Introduction
 1. A web service allowing 50+ users to co-edit bookmarks groups in real-time.
 2. Invite people to co-edit bookmarks groups and subscribe others' bookmarks groups.
 3. Integrate a popup Google Chrome extension to allow users to comment and rate websites.
-![login page](./frontend/readmeImg/BookmarkGroupManager.png)
 
 ## Link
 - [Demo video](https://www.youtube.com/watch?v=dW6dqEEwGrc)
