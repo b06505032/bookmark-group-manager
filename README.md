@@ -1,17 +1,15 @@
 # Bookmark Group Manager
 - Creator: [Gordon](https://github.com/gordon0813),  [Jonathan](https://github.com/b06505015),  [Catherine](https://github.com/chien-ying)
-- Deployed website [bookmark group manager](https://bookmark-group-manager.vercel.app/) (google chrome browser recommend)
-
-![login page](./frontend/readmeImg/BookmarkGroupManager.png)
 
 ## Introduction
-1. A web service allowing 50+ users to co-edit bookmarks groups in real-time
-2. Invite people to co-edit bookmarks groups and subscribe others' bookmarks groups
-3. Integrate a popup Google Chrome extension to allow users to comment and rate websites
+1. A web service allowing 50+ users to co-edit bookmarks groups in real-time.
+2. Invite people to co-edit bookmarks groups and subscribe others' bookmarks groups.
+3. Integrate a popup Google Chrome extension to allow users to comment and rate websites.
+![login page](./frontend/readmeImg/BookmarkGroupManager.png)
 
 ## Link
 - [Demo video](https://www.youtube.com/watch?v=dW6dqEEwGrc)
-- deployed website [bookmark group manager](https://bookmark-group-manager.vercel.app/) (google chrome browser recommend)
+- Deployed website: [bookmark group manager](https://bookmark-group-manager.vercel.app/) (google chrome browser recommend)
 - Google Chrome Extension [file](https://drive.google.com/file/d/1NfP-yyNE3fN4kwkxGj5BdZ5tB7RV5ULA/view?usp=sharing)
 - [Extension file upload tutorial](https://www.youtube.com/watch?v=K0gTg4F6x6k)
 
