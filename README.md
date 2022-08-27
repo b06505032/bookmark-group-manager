@@ -1,5 +1,5 @@
 # Bookmark Group Manager
-- Creator: [Gordon](https://github.com/gordon0813),  [Jonathan](https://github.com/b06505015),  [Catherine](https://github.com/chien-ying)
+- Creator: [Gordon](https://github.com/gordon0813),  [Jonathan](https://github.com/Jonathan-Chin328),  [Catherine](https://github.com/chien-ying)
 ![login page](./frontend/readmeImg/BookmarkGroupManager.png)
 
 ## Introduction
